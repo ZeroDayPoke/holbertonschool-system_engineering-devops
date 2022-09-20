@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#displayallprocs
+ps axu --forest

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#generic comment here
+i=0 #init arbitrary variable i
+until [ $i -gt 9 ] #set looper condition where -gt is greater than operator
+do #all the bash loops require this for... presumably some reason
+    echo "Best School" #print the text out
+    ((i++)) #increment the arbitrary variable
+done #also required... for unknown reasons

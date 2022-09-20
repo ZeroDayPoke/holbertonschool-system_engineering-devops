@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#apparently not a LOL ref
+for i in {1..100}
+do
+    txtOut=""
+    if (( i % 3 == 0 )); then
+        txtOut="Fizz"
+    fi
+    if (( i % 5 == 0 )); then
+        txtOut+="Buzz"
+    fi
+    if [[ $txtOut == "" ]]; then
+        txtOut="$i"
+    fi
+    echo "$txtOut"
+done
