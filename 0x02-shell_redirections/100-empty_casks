@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -empty | cut -d "/" -f2 | cat
+find . -maxdepth 1 -empty | cut -d "/" -f2 | cat
