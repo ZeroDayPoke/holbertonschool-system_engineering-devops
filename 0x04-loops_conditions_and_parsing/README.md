@@ -2,3 +2,5 @@ This directory was created as part of the Holberton School Tulsa second series o
 
 It contains answers to specific questions related to the following topics:
         0x04 - loops_conditions_and_parsing
+
+COMPLETE
