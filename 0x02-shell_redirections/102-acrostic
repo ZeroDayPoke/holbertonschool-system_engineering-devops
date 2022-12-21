@@ -1,0 +1,7 @@
+#!/bin/bash
+#decoder
+while read -r line; do
+	char=$(echo "$line" | cut -c1)
+	message="$message$char"
+done
+printf "%s\n" "$message"
