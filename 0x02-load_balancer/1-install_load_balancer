@@ -4,7 +4,6 @@
 apt-get update
 apt-get -y upgrade
 apt-get -y install haproxy
-cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 cat <<EOT > /etc/haproxy/haproxy.cfg
 defaults
@@ -17,4 +16,4 @@ backend servers
     server  5580-web-01 52.47.77.6:80 check
     server  5580-web-02 15.237.132.139:80 check
 EOT
-systemctl restart haproxy
+sudo service haproxy restart
