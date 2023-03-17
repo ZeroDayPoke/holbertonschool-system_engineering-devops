@@ -28,8 +28,8 @@ frontend http-in
     default_backend servers
 backend servers
     balance roundrobin
-    server web-01 5580-web-01:80 check
-    server web-02 5580-web-02:80 check
+    server 5580-web-01 52.47.77.6:80 check
+    server 5580-web-02 15.237.132.139:80 check
 EOT
 sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 systemctl enable haproxy
