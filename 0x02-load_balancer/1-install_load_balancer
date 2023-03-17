@@ -6,31 +6,15 @@ apt-get -y upgrade
 apt-get -y install haproxy
 cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 cat <<EOT > /etc/haproxy/haproxy.cfg
-global
-    log /dev/log    local0
-    log /dev/log    local1 notice
-    chroot /var/lib/haproxy
-    stats socket /run/haproxy/admin.sock mode 660 level admin
-    stats timeout 30s
-    user haproxy
-    group haproxy
-    daemon
 defaults
-    log     global
     mode    http
-    option  httplog
-    option  dontlognull
-    timeout connect 5000
-    timeout client  50000
-    timeout server  50000
 frontend http-in
-    bind *:80
+    bind    *:80
     default_backend servers
 backend servers
     balance roundrobin
-    server 5580-web-01 52.47.77.6:80 check
-    server 5580-web-02 15.237.132.139:80 check
+    server  5580-web-01 52.47.77.6:80 check
+    server  5580-web-02 15.237.132.139:80 check
 EOT
-sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
-systemctl enable haproxy
-systemctl start haproxy
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+systemctl restart haproxy
