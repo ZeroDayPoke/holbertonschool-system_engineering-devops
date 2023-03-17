@@ -5,7 +5,7 @@ apt-get update
 apt-get -y upgrade
 apt-get -y install haproxy
 cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
-cat <<EOT > /etc/haproxy/haproxy.cfg
+cat <<EOF > /etc/haproxy/haproxy.cfg
 global
     log /dev/log    local0
     log /dev/log    local1 notice
@@ -30,7 +30,7 @@ backend servers
     balance roundrobin
     server web-01 5580-web-01:80 check
     server web-02 5580-web-02:80 check
-EOT
+EOF
 sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 systemctl enable haproxy
 systemctl start haproxy
