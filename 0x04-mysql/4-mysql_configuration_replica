@@ -1,0 +1,6 @@
+server-id               = 2
+replicate-do-db         = tyrell_corp
+master-host             = web-01
+master-user             = replica_user
+master-password         = your_replica_password_here
+master-port             = 3306
