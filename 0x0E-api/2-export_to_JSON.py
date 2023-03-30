@@ -3,25 +3,29 @@
 import sys
 import requests
 import json
+import urllib
+
 
 def get_employee_data(employee_id):
     base_url = "https://jsonplaceholder.typicode.com"
-    
-    user_response = requests.get(f"{base_url}/users/{employee_id}")
+
+    user_response = requests.get("{}/users/{}".format(base_url, employee_id))
     user_data = user_response.json()
 
     if 'name' not in user_data:
         print("Invalid employee ID")
         return None, None
 
-    todos_response = requests.get(f"{base_url}/users/{employee_id}/todos")
+    todos_response = requests.get("{}/users/{}/todos"
+                                  .format(base_url, employee_id))
     todos_data = todos_response.json()
 
     return user_data, todos_data
 
+
 def export_to_json(employee_id, user_data, todos_data):
-    file_name = f"{employee_id}.json"
-    
+    file_name = "{}.json".format(employee_id)
+
     task_data = []
     for task in todos_data:
         task_data.append({
@@ -35,7 +39,8 @@ def export_to_json(employee_id, user_data, todos_data):
     with open(file_name, "w") as jsonfile:
         json.dump(json_data, jsonfile)
 
-    print(f"Data exported to {file_name}")
+    print("Data exported to {}".format(file_name))
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
