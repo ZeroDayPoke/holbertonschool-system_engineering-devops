@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """doc"""
-import requests
-import json
 import hashlib
+import json
+import requests
 
 
 def get_all_employees():

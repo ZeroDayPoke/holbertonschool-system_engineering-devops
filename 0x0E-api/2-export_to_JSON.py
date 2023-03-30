@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """doc"""
-import sys
-import requests
 import json
+import requests
+import sys
 import urllib
 
 
