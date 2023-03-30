@@ -17,7 +17,8 @@ def get_employee_data(employee_id):
         print("Invalid employee ID")
         return None, None
 
-    todos_response = requests.get(f"{base_url}/users/{employee_id}/todos")
+    todos_response = requests.get("{}/users/{}/todos"
+                                  .format(base_url, employee_id))
     todos_data = todos_response.json()
 
     return user_data, todos_data
