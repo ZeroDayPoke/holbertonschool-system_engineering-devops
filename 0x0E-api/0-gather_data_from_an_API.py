@@ -8,21 +8,23 @@ def get_employee_todo_progress(employee_id):
     """doc"""
     base_url = "https://jsonplaceholder.typicode.com"
 
-    user_response = requests.get(f"{base_url}/users/{employee_id}")
+    user_response = requests.get("{}/users/{}"
+                                 .format(base_url, employee_id))
     user_data = user_response.json()
 
     if 'name' not in user_data:
         print("Invalid employee ID")
         return
 
-    todos_response = requests.get(f"{base_url}/users/{employee_id}/todos")
+    todos_response = requests.get("{}/users/{}/todos"
+                                  .format(base_url, employee_id))
     todos_data = todos_response.json()
 
     done_tasks = [task for task in todos_data if task["completed"]]
     total_tasks = len(todos_data)
 
-    print(f"Employee {user_data['name']} is done
-          with tasks({len(done_tasks)}/{total_tasks}): ")
+    print("Employee {} is done with tasks({}/{}): "
+          .format(user_data['name'], len(done_tasks), total_tasks))
 
     for task in done_tasks:
         print("\t", task["title"])
