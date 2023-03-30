@@ -4,6 +4,7 @@ import sys
 import requests
 
 def get_employee_todo_progress(employee_id):
+    """doc"""
     base_url = "https://jsonplaceholder.typicode.com"
     
     user_response = requests.get(f"{base_url}/users/{employee_id}")
