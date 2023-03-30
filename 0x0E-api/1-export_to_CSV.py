@@ -3,11 +3,14 @@
 import sys
 import requests
 import csv
+import urllib
+
 
 def get_employee_data(employee_id):
     base_url = "https://jsonplaceholder.typicode.com"
-    
-    user_response = requests.get(f"{base_url}/users/{employee_id}")
+
+    user_response = requests.get("{}/users/{}"
+                                 .format(base_url, employee_id))
     user_data = user_response.json()
 
     if 'name' not in user_data:
@@ -19,16 +22,20 @@ def get_employee_data(employee_id):
 
     return user_data, todos_data
 
+
 def export_to_csv(employee_id, user_data, todos_data):
-    file_name = f"{employee_id}.csv"
-    
+    """doc"""
+    file_name = "{}.csv".format(employee_id)
+
     with open(file_name, "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        
-        for task in todos_data:
-            csv_writer.writerow([employee_id, user_data["username"], task["completed"], task["title"]])
 
-    print(f"Data exported to {file_name}")
+        for task in todos_data:
+            csv_writer.writerow([employee_id, user_data["username"],
+                                 task["completed"], task["title"]])
+
+    print("Data exported to {}".format(file_name))
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
