@@ -53,4 +53,3 @@ def export_to_json(all_employees_data):
 
 if __name__ == "__main__":
     all_employees_data = get_all_employees()
-    print(all_employees_data)
